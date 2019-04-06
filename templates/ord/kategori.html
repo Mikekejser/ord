@@ -1,0 +1,70 @@
+{% extends 'ord/main.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'ord/css/flipcard.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'ord/css/kategori.css' %}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="{% static 'ord/js/kategori.js' %}"></script>
+{% endblock %}
+
+
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">{{ name }}</h2>
+			<hr>
+			<h5>Vejledning:</h5>
+			<p>Hold musen over et kort for at vende det.</p>
+			<button id="swapLanguages" class="btn btn-success">
+				Spansk <i class="fas fa-exchange-alt"></i> Dansk
+			</button>
+			<br>
+			<br>
+			<a href="{% url 'ord:kategori' category.name 'let' %}" class="btn btn-dark">Let</a>
+			<a href="{% url 'ord:kategori' category.name 'øvet' %}" class="btn btn-dark">Øvet</a>
+			<a href="{% url 'ord:kategori' category.name 'expert' %}" class="btn btn-dark">Expert</a>
+			<a href="{% url 'ord:kategori' category.name 'alle' %}" class="btn btn-secondary ">Alle</a>
+			<br>
+			<br>
+		</div>
+	</div>
+
+	<br><br>
+
+	{% for word in words %}
+		<div class="row">
+			<div class="flip-card col-sm-10 mx-auto">
+			  <div class="flip-card-inner">
+			    <div class="flip-card-front">
+			    	<div class="dansk">
+			    		<sup><i>dansk</i></sup>
+			    		<h1 class="word">{{ word.danish }}</h1>
+			    	</div>
+			    	<div class="spansk-switch">
+			    			<sup><i>spansk</i></sup>
+			    		  <h1 class="word">{{ word.spanish }}</h1>
+			    	</div>
+			    </div>
+			    <div class="flip-card-back">
+			    	<div class="spansk">
+			    			<sup><i>spansk</i></sup>
+			    		  <h1 class="word">{{ word.spanish }}</h1>
+			    	</div>
+			    	<div class="dansk-switch">
+			    		<sup><i>dansk</i></sup>
+			    		<h1 class="word">{{ word.danish }}</h1>
+			    	</div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<br>
+	{% endfor%}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'ord/main.html' %}
+
+{% block title %}Ordsprog{% endblock %}
+
+{% load static %}
+
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'ord/css/flipcard.css' %}">
+{% endblock %}
+
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">Ordsprog</h2>
+			<hr>
+			<h5>Vejledning:</h5>
+			<p>Herunder vises 5 spanske ordsprog. Hold musen over kortet for at vende det.</p>
+			<p>Tryk på den blå knap for at få 5 nye.</p>
+				
+			<button class="btn btn-info" onclick="location.reload();">
+				Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+			</button>
+			<br>
+			<br>
+		</div>
+	</div>
+	<br>
+	{% for proverb in proverbs %}
+		<div class="row">
+			<div class="flip-card  col-sm-10 mx-auto">
+					<div class="flip-card-inner">
+						<div class="flip-card-front">
+							<div class="spansk">
+								<sup><i>ordsprog</i></sup>
+								<h3 class="word">{{ proverb.spanish }}</h3>
+							</div>
+						</div>
+						<div class="flip-card-back">
+							<div class="dansk">
+							    <sup><i>betydning</i></sup>
+						    	{% if proverb.extra %}
+						    		<h3 class="word">{{ proverb.danish }}<br><sub>({{ proverb.extra }})</sub></h3>
+						    	{% else %}
+						    		<h3 class="word">{{ proverb.danish }}</h3>
+						    	{% endif %}
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<br>
+	{% endfor%}
+	<a href="#" class="btn btn-info" onclick="location.reload();">
+		Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+	</a>
+{% endblock %}

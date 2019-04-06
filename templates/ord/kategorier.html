@@ -1,0 +1,26 @@
+{% extends 'ord/main.html' %}
+
+{% block main %}
+	<div class="row text-center">
+		<div class="block col-sm-10 mx-auto">
+			<table class="table">
+				<tr>
+					<td colspan="2"><a href="{% url 'ord:alle_ord' %}">Alle</a></td>
+				</tr>
+				<tr>
+				{% for category in categories %}
+					<td>
+						<a href="{% url 'ord:kategori' category.name 'alle' %}">{{ category.name }}</a>
+					</td>
+					{% if forloop.last %}
+						</tr>
+					{% else %}
+						{% if forloop.counter|divisibleby:"2" %}
+							</tr><tr>
+						{% endif %}
+					{% endif %}
+				{% endfor%}
+			</table>
+		</div>
+	</div>
+{% endblock %}

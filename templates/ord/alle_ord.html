@@ -1,0 +1,24 @@
+{% extends 'ord/main.html' %}
+
+
+{% block title %}Alle ord{% endblock %}
+
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">Alle ord</h2>
+			<p>I feltet kan du søge på alle ord i databasen. Husk accent og tilde hvis ordet har det.</p>
+			<hr>
+			<form action="" class="form-inline my-2 my-lg-0" method="post">
+				{% csrf_token %}
+				<input name="search-field" class="form-control mr-sm-2" type="search" placeholder="Søg her" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Søg</button>
+			</form>
+
+	{% for word in words %}
+		{{ word.spanish }} - {{ word.danish }}
+		<br>
+	{% endfor%}
+		</div>
+	</div>
+{% endblock %}

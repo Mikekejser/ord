@@ -1,0 +1,59 @@
+{% extends 'ord/main.html' %}
+
+{% block title %}Faste Udtryk{% endblock %}
+
+{% load static %}
+
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'ord/css/flipcard.css' %}">
+{% endblock %}
+
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">Faste Udtryk og Idiomer</h2>
+			<hr>
+			<h5>Vejledning:</h5>
+			<p>Herunder vises 5 faste udtryk og <u title="Fra Den Danske Ordbog: 'Fast udtryk med en samlet betydning der ikke kan udledes af de enkelte ords betydning - fx træde i spinaten, der betyder 'dumme sig'.'">idiomer</u> som bruges på spansk. Hold musen over kortet for at vende det.</p>
+			<p>Tryk på den blå knap for at få 5 nye.</p>
+				
+			<button class="btn btn-info" onclick="location.reload();">
+				Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+			</button>
+			<br>
+			<br>
+		</div>
+	</div>
+	<br>
+
+	{% for expression in expressions %}
+		<div class="row">
+			<div class="flip-card col-sm-10 mx-auto">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+						<div class="spansk">
+							<sup><i>udtryk</i></sup>
+							<h3 class="word">{{ expression.spanish }}</h3>
+						</div>
+					</div>
+					<div class="flip-card-back">
+						<div class="dansk">
+							<sup><i>dansk betydning</i></sup>
+							    {% if expression.extra %}
+							    	<h3 class="word">{{ expression.danish }}<br><sub>({{ expression.extra }})</sub></h3>
+							    {% else %}
+							    	<h3 class="word">{{ expression.danish }}</h3>
+							    {% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+	{% endfor%}
+	<a href="#" class="btn btn-info" onclick="location.reload();">
+		Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+	</a>
+{% endblock %}

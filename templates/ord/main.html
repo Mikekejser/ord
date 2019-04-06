@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block title %}Flashkort{% endblock %}
+
+{% block menu %}
+	<a href="{% url 'ord:kategorier' %}">Kategorier</a> |
+	<a href="{% url 'ord:top_200' %}">Top 200 ord</a> |
+	<a href="{% url 'ord:fraser' 'alle' %}">Sætninger</a> |
+	<a href="{% url 'ord:udtryk' %}">Idiomer</a> |
+	<a href="{% url 'ord:ordsprog' %}">Ordsprog</a> | 
+	<a href="{% url 'ord:alle_ord' %}">Alle ord</a>
+{% endblock %}
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">Flashkort</h2>
+			<hr>
+			<h4>Velkommen!</h4>
+			<p>På denne side kan du forøge dit ordforråd ved at øve ord, sætninger og faste udtryk med flashkort.</p>
+			<p>Vælg hvad du vil øve i menuen ovenfor.</p>
+		</div>
+	</div>
+{% endblock %}
+

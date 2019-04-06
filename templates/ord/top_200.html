@@ -1,0 +1,55 @@
+{% extends 'ord/main.html' %}
+
+{% load static %}
+
+{% block title %}Top 200 Ord{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'ord/css/flipcard.css' %}">
+{% endblock %}
+
+
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">Top 200 Ord</h2>
+			<hr>
+			<h5>Vejledning:</h5>
+			<p>Hold musen over et kort for at vende det.</p>
+			<p>Her er 10 tilfældige ord udvalgt af de 200 mest anvendte spanske ord. Tryk på den blå knap for at få 10 nye.</p>
+			
+			<button class="btn btn-info" onclick="location.reload();">
+				Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+			</button>
+			<br>
+			<br>
+		</div>
+	</div>
+	<br>
+
+	{% for word in words %}
+		<div class="row">
+			<div class="flip-card col-sm-10 mx-auto">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+				    	<div class="spansk">
+				    		<sup><i>spansk</i></sup>
+				    		<h1 class="word">{{ word.spanish }}</h1>
+				    	</div>
+				    </div>
+				    <div class="flip-card-back">
+				    	<div class="dansk">
+				    		<sup><i>dansk</i></sup>
+				    		<h1 class="word">{{ word.danish }}</h1>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<br>
+	{% endfor %}
+	<a href="#" class="btn btn-info" onclick="location.reload();">
+		Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+	</a>
+{% endblock %}

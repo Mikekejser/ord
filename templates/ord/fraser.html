@@ -1,0 +1,61 @@
+{% extends 'ord/main.html' %}
+
+{% block title %}Sætninger{% endblock %}
+
+{% load static %}
+
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'ord/css/flipcard.css' %}">
+{% endblock %}
+
+{% block main %}
+	<div class="row">
+		<div class="block col-sm-10 mx-auto">
+			<h2 align="center">Sætninger</h2>
+			<hr>
+			<h5>Vejledning:</h5>
+			<p>Der gives 5 tilfældige sætninger. Læs hver sætning på spansk og prøv at oversætte den til dansk. Hold derefter musen over kortet for at vende det.</p>
+			<p>Tryk på den blå knap for at få 5 nye.</p>
+				
+			<button class="btn btn-info" onclick="location.reload();">
+				Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+			</button>
+			<br>
+			<br>
+			<a href="{% url 'ord:fraser' 'let' %}" class="btn btn-dark">Let</a>
+			<a href="{% url 'ord:fraser' 'øvet' %}" class="btn btn-dark">Øvet</a>
+			<a href="{% url 'ord:fraser' 'expert' %}" class="btn btn-dark">Expert</a>
+			<a href="{% url 'ord:fraser' 'alle' %}" class="btn btn-secondary ">Alle</a>
+			<br>
+			<br>
+		</div>
+	</div>
+	<br>
+	{% for phrase in phrases %}
+		<div class="row">
+			<div class="flip-card  col-sm-10 mx-auto">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+						<div class="spansk">
+							   <sup><i>spansk</i></sup>
+							    <p class="word">{{ phrase.spanish }}</p>
+						</div>
+					</div>
+					<div class="flip-card-back">
+							<div class="dansk">
+							    <sup><i>dansk</i></sup>
+							    <p class="word">{{ phrase.danish }}</p>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+	{% endfor%}
+	<a href="#" class="btn btn-info" onclick="location.reload();">
+		Nye Kort&nbsp;&nbsp;<i class="fas fa-sync-alt"></i>
+	</a>
+{% endblock %}
